@@ -149,6 +149,36 @@ export default class Matrix {
     return new Matrix(this)
   }
 
+  // Applies a matrix defined by its affine parameters
+  // compose missing
+  // compose get from svg.js-3.0.16
+  compose (o) {
+    if (o.origin) {
+      o.originX = o.origin[0]
+      o.originY = o.origin[1]
+    }
+    // Get the parameters
+    var ox = o.originX || 0
+    var oy = o.originY || 0
+    var sx = o.scaleX || 1
+    var sy = o.scaleY || 1
+    var lam = o.shear || 0
+    var theta = o.rotate || 0
+    var tx = o.translateX || 0
+    var ty = o.translateY || 0
+
+    // Apply the standard matrix
+    var result = new Matrix()
+      .translateO(-ox, -oy)
+      .scaleO(sx, sy)
+      .shearO(lam)
+      .rotateO(theta)
+      .translateO(tx, ty)
+      .lmultiplyO(this)
+      .translateO(ox, oy)
+    return result
+  }
+  
   // Decomposes this matrix into its affine parameters
   decompose(cx = 0, cy = 0) {
     // Get the parameters from the matrix
