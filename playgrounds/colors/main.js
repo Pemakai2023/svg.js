@@ -1,3 +1,5 @@
+import SVG from '../../index.js'
+
 let canvas = SVG('#canvas').group().translate(-150, 230)
 
 // Make a bunch of rectangles
