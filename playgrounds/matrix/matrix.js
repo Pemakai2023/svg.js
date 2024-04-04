@@ -1,3 +1,5 @@
+import SVG from "../../index.js"
+
 function print(mat) {
   let { a, b, c, d } = mat
   console.log(`
