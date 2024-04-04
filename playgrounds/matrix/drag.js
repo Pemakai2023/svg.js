@@ -1,3 +1,5 @@
+import SVG from "../../index.js"
+
 function reactToDrag(element, onDrag, beforeDrag) {
   let xStart, yStart
   let startDrag = (event) => {
